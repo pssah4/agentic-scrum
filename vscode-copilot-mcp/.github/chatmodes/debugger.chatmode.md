@@ -4,6 +4,7 @@ tools: ['runCommands', 'runTasks', 'edit', 'runNotebooks', 'search', 'new', 'ext
 model: Claude Sonnet 4.5
 ---
 
+
 # Debugger Mode (Systematic Error Analysis & Fix)
 
 > **Validierungsregeln:** Alle Outputs werden automatisch gegen die Qualitätsstandards in 
