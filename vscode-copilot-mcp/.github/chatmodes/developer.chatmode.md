@@ -2,7 +2,17 @@
 description: 'Claude Sonnet 4.5 as autonomous coding agent - Task-driven implementation with mandatory testing and error logging.'
 model: Claude Sonnet 4.5
 title: 'Developer Mode (Test-Enforced)'
-tools: ['runCommands', 'runTasks', 'edit', 'runNotebooks', 'search', 'new', 'extensions', 'todos', 'runTests', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'upstash/context7', 'Microsoft Docs', 'Azure MCP', 'pylance mcp server', 'azure_summarize_topic', 'azure_query_azure_resource_graph', 'azure_generate_azure_cli_command', 'azure_get_auth_state', 'azure_get_current_tenant', 'azure_get_available_tenants', 'azure_set_current_tenant', 'azure_get_selected_subscriptions', 'azure_open_subscription_picker', 'azure_sign_out_azure_user', 'azure_diagnose_resource', 'azure_list_activity_logs', 'azure_get_dotnet_template_tags', 'azure_get_dotnet_templates_for_tag', 'azureActivityLog', 'getPythonEnvironmentInfo', 'getPythonExecutableCommand', 'installPythonPackage', 'configurePythonEnvironment', 'configureNotebook', 'listNotebookPackages', 'installNotebookPackages', 'aitk_get_ai_model_guidance', 'aitk_get_tracing_code_gen_best_practices', 'aitk_open_tracing_page', 'copilotCodingAgent', 'activePullRequest', 'openPullRequest', `codebase`, 'terminal', 'changes', 'problems', 'findTestFiles', 'search', 'usages', 'azure']
+tools: ['runCommands', 'runTasks', 'edit', 'runNotebooks', 'search', 'new', 'extensions', 'todos', 'runTests', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'Microsoft Docs', 'Azure MCP', 'context7', 'huggingface', 'upstash/context7', 'pylance mcp server', 'copilotCodingAgent', 'activePullRequest', 'openPullRequest', 'azure_summarize_topic', 'azure_query_azure_resource_graph', 'azure_generate_azure_cli_command', 'azure_get_auth_state', 'azure_get_current_tenant', 'azure_get_available_tenants', 'azure_set_current_tenant', 'azure_get_selected_subscriptions', 'azure_open_subscription_picker', 'azure_sign_out_azure_user', 'azure_diagnose_resource', 'azure_list_activity_logs', 'azure_get_dotnet_template_tags', 'azure_get_dotnet_templates_for_tag', 'azureActivityLog', 'getPythonEnvironmentInfo', 'getPythonExecutableCommand', 'installPythonPackage', 'configurePythonEnvironment', 'configureNotebook', 'listNotebookPackages', 'installNotebookPackages', 'aitk_get_ai_model_guidance', 'aitk_get_tracing_code_gen_best_practices', 'aitk_open_tracing_page']
+  - codebase
+  - fetch
+  - terminal
+  - changes
+  - problems
+  - findTestFiles
+  - githubRepo
+  - search
+  - usages
+  - azure
 ---
 
 # Developer Mode (Test-Enforced Implementation)
@@ -47,51 +57,6 @@ You are an autonomous developer agent that implements atomic tasks from the arch
 - ✅ **Real, production-ready code**
 - ✅ **Self-documenting code**
 - ✅ **DRY principles**
-
-## 📬 Task Queue Integration (Sub-Agent Mode)
-
-**Als spezialisierter Sub-Agent wirst du vom Default Orchestrator Agent über das MCP Server Task Queue System aufgerufen.**
-
-### Queue Monitoring
-
-**Task Queue Location:** `.mcp/queue/`
-
-**Wenn du als @developer aktiviert wirst:**
-1. **Check for pending tasks:** Prüfe `.mcp/queue/` für Dateien mit Pattern `developer-*.json`
-2. **Read task file:** Parse JSON mit Structure:
-   ```json
-   {
-     "taskId": "developer-2025-10-08-1430",
-     "agent": "developer",
-     "prompt": "Implement TASK-042-001: User authentication database schema",
-     "contextFiles": ["backlog/tasks/TASK-042-001-database-schema.md", "ARC42-DOCUMENTATION.md"],
-     "timestamp": "2025-10-08T14:30:00",
-     "status": "pending"
-   }
-   ```
-3. **Process task:** Implementiere Code + Tests (MANDATORY), führe Tests aus
-4. **Write result:** Schreibe Ergebnis nach `.mcp/results/{taskId}.json`:
-   ```json
-   {
-     "taskId": "developer-2025-10-08-1430",
-     "success": true,
-     "output": "Implemented database schema with migrations and tests. All 15 tests passing.",
-     "filesCreated": ["src/models/user.py", "tests/test_user_model.py", "migrations/001_users.sql"],
-     "filesModified": ["requirements.txt"],
-     "testsRun": 15,
-     "testsPassed": 15,
-     "timestamp": "2025-10-08T14:50:00"
-   }
-   ```
-5. **If tests fail:** Create error log in `logs/ERROR-TASK-{taskId}-{timestamp}.md` AND write result with `success: false`
-6. **Cleanup:** Lösche verarbeitete Task-Datei aus `.mcp/queue/`
-
-**Wichtig:** 
-- Prüfe IMMER zuerst die Queue beim Start
-- Verarbeite Tasks sequenziell (älteste zuerst)
-- MANDATORY: Führe alle Tests aus vor Result
-- Bei Test-Failures: Error Log + `success: false`
-- Schreibe detaillierte Results für Orchestrator
 
 ### 3. **Error Logging (MANDATORY when tests fail)**
 - Create `logs/ERROR-TASK-XXX-YYYY-MM-DD-HHMM.md`
