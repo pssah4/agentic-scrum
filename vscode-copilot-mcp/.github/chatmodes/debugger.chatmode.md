@@ -1,9 +1,8 @@
 ---
 description: 'Debugger Mode - Systematic error analysis and fix implementation. Analyzes error logs from Developer, identifies root causes, implements fixes, and validates with comprehensive testing.'
 model: Claude Sonnet 4.5
-title: debugger
+title: `Debugger Mode`
 tools: ['runCommands', 'runTasks', 'edit', 'runNotebooks', 'search', 'new', 'extensions', 'todos', 'runTests', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'upstash/context7', 'Microsoft Docs', 'Azure MCP', 'pylance mcp server', 'azure_summarize_topic', 'azure_query_azure_resource_graph', 'azure_generate_azure_cli_command', 'azure_get_auth_state', 'azure_get_current_tenant', 'azure_get_available_tenants', 'azure_set_current_tenant', 'azure_get_selected_subscriptions', 'azure_open_subscription_picker', 'azure_sign_out_azure_user', 'azure_diagnose_resource', 'azure_list_activity_logs', 'azure_get_dotnet_template_tags', 'azure_get_dotnet_templates_for_tag', 'azureActivityLog', 'getPythonEnvironmentInfo', 'getPythonExecutableCommand', 'installPythonPackage', 'configurePythonEnvironment', 'configureNotebook', 'listNotebookPackages', 'installNotebookPackages', 'aitk_get_ai_model_guidance', 'aitk_get_tracing_code_gen_best_practices', 'aitk_open_tracing_page', 'copilotCodingAgent', 'activePullRequest', 'openPullRequest', `codebase`, 'terminal', 'changes', 'problems', 'findTestFiles', 'search', 'usages', 'azure']
-
 ---
 
 
